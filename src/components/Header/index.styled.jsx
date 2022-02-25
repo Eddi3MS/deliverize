@@ -42,11 +42,12 @@ export const HeaderStyled = styled.header`
     .Header__actions-address {
       display: flex;
       align-items: center;
+      height: 3rem;
 
       background-color: var(--white);
       padding: 0.5rem;
       font-size: var(--font-xs);
-      line-height: 1.2;
+      line-height: 1.3;
       min-width: 230px;
       justify-content: space-between;
       box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);

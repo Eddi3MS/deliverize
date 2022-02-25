@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Button from "../Button";
 import { HeaderStyled } from "./index.styled";
@@ -8,9 +8,12 @@ import KeyDown from "../../assets/images/key_down.svg";
 import KeyLeft from "../../assets/images/key_left.svg";
 import User from "../../assets/images/account.svg";
 import Cart from "../../assets/images/cart.svg";
+import CartContext from "../../store/cart-context";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const ctx = useContext(CartContext);
 
   return (
     <HeaderStyled isOpen={isOpen}>
@@ -45,7 +48,13 @@ const Header = () => {
           <div className="Header__actions-buttons">
             <Button img={User} alt="Fazer login" width={32} text="Entrar" />
 
-            <Button img={Cart} alt="Carinho" width={32} text="Carrinho" />
+            <Button
+              img={Cart}
+              alt="Carinho"
+              width={32}
+              text="Carrinho"
+              cart={ctx.cart.length}
+            />
           </div>
         </div>
       </div>

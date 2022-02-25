@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 import burguer from "../../assets/images/foto.png";
@@ -8,17 +8,20 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import InputActions from "../../components/Input/InputActions";
 import Modal from "../../components/Modal";
+import CartContext from "../../store/cart-context";
 
 const ProductSingle = () => {
   const [products, setProducts] = useState([]);
   const [extras, setExtras] = useState([]);
   const [maxExtras, setMaxExtras] = useState(0);
   const [precTalher, setPrecTalher] = useState("não");
-  const [pedido, setPedido] = useState({});
+  const [purchase, setPurchase] = useState({});
 
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  const ctx = useContext(CartContext);
 
   useEffect(() => {
     setLoading(true);
@@ -95,7 +98,7 @@ const ProductSingle = () => {
       0
     );
 
-    const pedido = {
+    const purchase = {
       product: products[0].nm_product,
       qtty: products[0].itemAmount,
       extras: extras.filter((extra) => extra.itemAmount >= 1),
@@ -106,7 +109,8 @@ const ProductSingle = () => {
       ).toFixed(2),
     };
 
-    setPedido(pedido);
+    ctx.addToCart(purchase);
+    setPurchase(purchase);
     setModal(true);
   };
 
@@ -124,15 +128,9 @@ const ProductSingle = () => {
     };
   }, [modal]);
 
-  useEffect(() => {
-    if (maxExtras > 8) {
-      return;
-    }
-  }, [maxExtras]);
-
   return (
     <ProductSingleStyled>
-      {modal && <Modal data={pedido} />}
+      {modal && <Modal data={purchase} />}
       {loading && <p style={{ margin: "auto" }}>Loading..</p>}
       {error && (
         <p style={{ margin: "auto" }}>
