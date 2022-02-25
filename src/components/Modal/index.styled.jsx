@@ -14,6 +14,7 @@ export const ModalStyled = styled.div`
   background-color: var(--white);
   padding-bottom: 0.5rem;
   border-radius: var(--radius);
+  line-height: 110%;
 
   ::before {
     content: "";
@@ -43,6 +44,7 @@ export const ModalStyled = styled.div`
 
   h3 {
     padding: 0.5rem 10px;
+    color: var(--red-3);
 
     font-size: var(--font-sm);
   }
@@ -52,17 +54,24 @@ export const ModalStyled = styled.div`
 
   ul {
     display: block;
-    list-style-type: disc;
     padding-left: 15px;
-    list-style-position: inside;
 
     li {
-      margin: 0;
-      padding: 0;
+      line-height: 1.2;
+
+      &:before {
+        content: "·";
+        font-size: 35px;
+        vertical-align: middle;
+        line-height: 17px;
+      }
+    }
+    span {
+      padding-left: 2px;
     }
 
     span + span {
-      padding-left: 5px;
+      padding-left: 4px;
     }
   }
 `;
