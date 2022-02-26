@@ -6,6 +6,9 @@ export const HeaderStyled = styled.header`
   background-color: var(--header);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
 
+  position: sticky;
+  top: 0;
+
   .Header__wrapper {
     display: flex;
     justify-content: center;
@@ -26,10 +29,11 @@ export const HeaderStyled = styled.header`
 
   .Header__actions-wrapper {
     position: absolute;
-    top: 60px;
+    top: 56px;
     left: ${(props) => (props.isOpen ? "0" : "-100%")};
     bottom: 0;
     width: min(300px, 90%);
+    height: calc(100vh - 56px);
     background-color: var(--header);
     transition: all 0.2s ease-in-out;
 
@@ -103,6 +107,8 @@ export const HeaderStyled = styled.header`
       left: 0;
       bottom: 0;
       width: auto;
+      height: auto;
+
       background-color: var(--header);
       padding: 0;
       flex-direction: row;
